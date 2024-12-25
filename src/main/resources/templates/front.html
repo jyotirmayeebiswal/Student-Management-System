@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Welcome to Student Management System</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <style>
+        /* Background Styling */
+        body {
+            background: url('https://images.squarespace-cdn.com/content/v1/57713a8e2994cae381dd86fe/2ecd18b6-5257-4555-8604-988b8b295707/_DSC0132.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            color: #fff;
+        }
+
+        /* Header Section */
+        .header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .header h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-top: 10px;
+        }
+
+        /* Overlay for better text visibility */
+        .overlay {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 50px;
+            border-radius: 15px;
+            color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .overlay h3 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.7); /* Added text shadow to h3 */
+        }
+
+        .overlay p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        /* Button Styling */
+        .btn-primary {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            border: none;
+            font-size: 1.2rem;
+            padding: 10px 30px;
+			backdrop-filter: blur(10px);
+            border-radius: 25px;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(to right, #2575fc, #6a11cb);
+            transition: 0.3s ease;
+			backdrop-filter: blur(10px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .header h2 {
+                font-size: 1rem;
+            }
+
+            .overlay h3 {
+                font-size: 2rem;
+            }
+
+            .overlay p {
+                font-size: 1rem;
+            }
+        }
+		
+		h1 {
+		            font-size: 3rem;
+		            color: white;
+		            text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.7); /* horizontal, vertical, blur, color */
+		        }
+
+		        /* Shadow for h2 */
+		        h2 {
+		            font-size: 3rem;
+		            color: white;
+		            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* horizontal, vertical, blur, color */
+		        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <div class="header">
+        <h1>ITER | SOA</h1>
+        <h2>Institute of Technical Education and Research</h2>
+    </div>
+
+    <!-- Main Content Section -->
+    <div class="overlay">
+        <h3>Know Your Student</h3>
+        <p>Welcome to the Student Management System. Manage and explore student details effortlessly.</p>
+        <a th:href="@{/students}" class="btn btn-primary">Enter</a>
+    </div>
+</body>
+</html>

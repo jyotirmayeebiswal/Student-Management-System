@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+    <link rel="stylesheet" 
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+          crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" 
+            integrity="sha384-DFXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" 
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" 
+            integrity="sha384-94dc26a5aa11f3e910efdfb23a6b70f5a5c08e00a660cd1f731ad1df4214032f" 
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
+            crossorigin="anonymous"></script>
+    <style>
+        body {
+            background: url(https://images.squarespace-cdn.com/content/v1/57713a8e2994cae381dd86fe/1474893674207-RU6HMQIR5DEOHSZOJUTS/Library+iter.jpg) no-repeat;
+            background-position: center;
+            background-size: cover;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .card {
+            background: rgba(0,0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-top: 30px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: #2575fc;
+        }
+
+        .form-control {
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+        }
+
+        .font {
+            color: white;
+        }
+
+        /* Blurring the background of the student list table */
+        .table-container {
+            background: rgba(0, 0, 0, 0.2);  /* Semi-transparent background */
+            backdrop-filter: blur(10px);    /* Apply blur effect */
+            padding: 20px;
+            border-radius: 15px;            /* Round the corners */
+        }
+
+        .table-container table {
+            background: rgba(0, 0, 0, 0.2); /* Dark background for the table */
+            backdrop-filter: blur(5px);     /* Additional blur on the table itself */
+        }
+
+        /* Add shadow to the Student List heading */
+        h1.text-center {
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.6); /* X, Y, blur, color */
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Main Content Section -->
+    <div class="container my-4">
+        <div class="row mb-3">
+            <div class="col-12">
+                <h1 class="text-center text-white">Student Details</h1> <!-- Heading with shadow -->
+            </div>
+        </div>
+
+        <!-- Search and Add Student Section -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <form th:action="@{/students/search}" method="get" class="form-inline">
+                    <input type="text" name="regdNo" placeholder="Registration Number" class="form-control form-control-sm mr-2">
+                    <button type="submit" class="btn btn-primary btn-sm">Search</button>
+                </form>
+            </div>
+            <div class="col-md-6 text-right">
+                <a th:href="@{/students/new}" class="btn btn-primary btn-sm">Add Student</a>
+            </div>
+        </div>
+
+        <!-- Student Table Section with Blurred Background -->
+        <div class="row">
+            <div class="col-12 table-container">
+                <table class="table table-hover table-bordered text-white">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Full Name</th>
+                            <th>Registration Number</th>
+                            <th>Email</th>
+                            <th>CGPA</th>
+                            <th>Placed In</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="student : ${students}">
+                            <td th:text="${student.fullName}"></td>
+                            <td th:text="${student.regdNo}"></td>
+                            <td th:text="${student.email}"></td>
+                            <td th:text="${student.cgpa}"></td>
+                            <td th:text="${student.company}"></td>
+                            <td>
+                                <a th:href="@{/students/edit/{id}(id=${student.id})}" class="btn btn-primary btn-sm">Update</a>
+                                <a th:href="@{/students/{id}(id=${student.id})}" class="btn btn-danger btn-sm"
+                                   onclick="return confirm('Are you sure you want to delete this student?');">Delete</a>
+                            </td>
+                        </tr>
+                        <tr th:if="${students.empty}">
+                            <td colspan="6" class="text-center">No students found.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
